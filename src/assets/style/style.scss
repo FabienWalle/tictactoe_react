@@ -1,0 +1,125 @@
+$primary-color: #bc13fe;
+$secondary-color: #5271ff;
+
+%blue_neon {
+  box-shadow: 0 0 .2rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem $secondary-color,
+    0 0 0.8rem $secondary-color,
+    0 0 2.8rem $secondary-color,
+    inset 0 0 1.3rem $secondary-color;
+}
+
+%neon_text {
+  color: $primary-color, ;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px $primary-color,
+    0 0 82px $primary-color,
+    0 0 92px $primary-color,
+    0 0 102px $primary-color,
+    0 0 151px $primary-color;
+}
+
+
+body {
+  background-image: url(../images/brickwall.jpg);
+  background-size: cover;
+  font-family: 'Helvetica Neue', sans-serif;
+  height: 90vh;
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .cell {
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border: 3px solid $primary-color;
+    margin: 5px;
+    font-size: 80px;
+
+    @extend %blue_neon;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @extend %neon_text;
+  }
+}
+
+#scores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  @extend %neon_text;
+
+
+  .players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+
+    span:first-child {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    span:last-child {
+      font-size: 40px;
+    }
+  }
+
+  input[type="checkbox"] {
+    margin-left: 20px;
+
+    +span {
+      font-size: 20px;
+    }
+  }
+}
+
+@keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px $secondary-color,
+      0 0 80px $secondary-color,
+      0 0 90px $secondary-color,
+      0 0 100px $secondary-color,
+      0 0 150px $secondary-color;
+  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
+}
+
+.pulsate {
+  animation: flicker 2.5s infinite alternate;
+}
